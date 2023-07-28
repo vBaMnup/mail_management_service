@@ -1,5 +1,30 @@
 from django.db import models
+from django.utils import timezone
 from django.core.validators import RegexValidator
+
+
+class Mailing(models.Model):
+    """Mailing model"""
+
+    mailing_id = models.AutoField(primary_key=True)
+    start_datetime = models.DateTimeField("Date and time of mailing start")
+    end_datetime = models.DateTimeField("Date and time of mailing end")
+    filter = models.CharField("Filter", max_length=100)
+
+    @property
+    def to_sent(self):
+        return self.start_datetime < timezone.now() < self.end_datetime
+
+    def clean(self):
+        if self.start_datetime > self.end_datetime < timezone.now():
+            raise ValueError("Start time must be before end time")
+
+    def __str__(self):
+        return self.filter
+
+    class Meta:
+        verbose_name = "Mailing"
+        verbose_name_plural = "Mailings"
 
 
 class Client(models.Model):
