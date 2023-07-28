@@ -9,7 +9,18 @@ class Mailing(models.Model):
     mailing_id = models.AutoField(primary_key=True)
     start_datetime = models.DateTimeField("Date and time of mailing start")
     end_datetime = models.DateTimeField("Date and time of mailing end")
-    filter = models.CharField("Filter", max_length=100)
+    operator_code = models.CharField(
+        "Operator code", max_length=3, blank=True, null=True
+    )
+    tag = models.CharField("Tag", max_length=100, blank=True, null=True)
+
+    def get_clients(self):
+        clients = Client.objects.all()
+        if self.operator_code:
+            clients = clients.filter(operator_code=self.operator_code)
+        if self.tag:
+            clients = clients.filter(tag=self.tag)
+        return clients
 
     @property
     def to_sent(self):
@@ -20,7 +31,7 @@ class Mailing(models.Model):
             raise ValueError("Start time must be before end time")
 
     def __str__(self):
-        return self.filter
+        return f"start: {self.start_datetime}, end: {self.end_datetime}"
 
     class Meta:
         verbose_name = "Mailing"
@@ -32,6 +43,7 @@ class Client(models.Model):
 
     client_id = models.AutoField(primary_key=True)
     phone_number = models.CharField(
+        "Phone number",
         max_length=11,
         unique=True,
         validators=[
@@ -41,8 +53,12 @@ class Client(models.Model):
             )
         ],
     )
-    operator_code = models.CharField(max_length=3)
+    operator_code = models.CharField("Operator code", max_length=3, editable=False)
     tag = models.CharField(max_length=100)
+
+    def save(self, *args, **kwargs):
+        self.operator_code = self.phone_number[1:4]
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.phone_number
@@ -50,3 +66,27 @@ class Client(models.Model):
     class Meta:
         verbose_name = "Client"
         verbose_name_plural = "Clients"
+
+
+class Message(models.Model):
+    """Message model"""
+
+    message_id = models.AutoField(primary_key=True)
+    datetime = models.DateTimeField("Date and time of message creation")
+    mailing_id = models.ForeignKey(
+        Mailing,
+        on_delete=models.CASCADE,
+        related_name="messages",
+        verbose_name="Mailing",
+    )
+    text = models.TextField("Message text")
+    client = models.ForeignKey(
+        Client, on_delete=models.CASCADE, related_name="messages", verbose_name="Client"
+    )
+
+    def __str__(self):
+        return self.client.phone_number
+
+    class Meta:
+        verbose_name = "Message"
+        verbose_name_plural = "Messages"
