@@ -1,3 +1,4 @@
 djangorestframework==3.14.0
+Django==4.2.3
 black==22.10.0
 drf-yasg==1.21.7
