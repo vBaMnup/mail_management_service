@@ -1,6 +1,11 @@
 from django.contrib import admin
 
-from src.client.models import Client
+from src.mailing.models import Client, Mailing
+
+
+@admin.register(Mailing)
+class MailingAdmin(admin.ModelAdmin):
+    list_filter = ("filter",)
 
 
 @admin.register(Client)
