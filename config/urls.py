@@ -1,11 +1,10 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
-from src.mailing import views
 from config.yasg import swaggerurlpatterns
 
-
 urlpatterns = [
+    path("api/v1/", include("src.api.urls")),
     path("admin/", admin.site.urls),
 ]
 
