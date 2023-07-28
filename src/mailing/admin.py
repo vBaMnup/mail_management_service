@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from src.client.models import Client
+from src.mailing.models import Client
 
 
 @admin.register(Client)
