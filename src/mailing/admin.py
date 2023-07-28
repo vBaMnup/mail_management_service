@@ -17,5 +17,5 @@ class ClientAdmin(admin.ModelAdmin):
 
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
-    search_fields = ("client__phone_number", "client__tag")
-    list_filter = ("client__tag", "client__operator_code")
+    search_fields = ("text",)
+    list_filter = ("datetime",)

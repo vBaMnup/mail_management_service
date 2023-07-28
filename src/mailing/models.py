@@ -1,6 +1,6 @@
+from django.core.validators import RegexValidator
 from django.db import models
 from django.utils import timezone
-from django.core.validators import RegexValidator
 
 
 class Mailing(models.Model):
@@ -9,17 +9,17 @@ class Mailing(models.Model):
     mailing_id = models.AutoField(primary_key=True)
     start_datetime = models.DateTimeField("Date and time of mailing start")
     end_datetime = models.DateTimeField("Date and time of mailing end")
-    operator_code = models.CharField(
+    operator_code_filter = models.CharField(
         "Operator code", max_length=3, blank=True, null=True
     )
-    tag = models.CharField("Tag", max_length=100, blank=True, null=True)
+    tag_filter = models.CharField("Tag", max_length=100, blank=True, null=True)
 
     def get_clients(self):
         clients = Client.objects.all()
-        if self.operator_code:
-            clients = clients.filter(operator_code=self.operator_code)
-        if self.tag:
-            clients = clients.filter(tag=self.tag)
+        if self.operator_code_filter:
+            clients = clients.filter(operator_code=self.operator_code_filter)
+        if self.tag_filter:
+            clients = clients.filter(tag=self.tag_filter)
         return clients
 
     @property
@@ -27,7 +27,7 @@ class Mailing(models.Model):
         return self.start_datetime < timezone.now() < self.end_datetime
 
     def clean(self):
-        if self.start_datetime > self.end_datetime < timezone.now():
+        if self.start_datetime >= self.end_datetime:
             raise ValueError("Start time must be before end time")
 
     def __str__(self):
@@ -80,12 +80,9 @@ class Message(models.Model):
         verbose_name="Mailing",
     )
     text = models.TextField("Message text")
-    client = models.ForeignKey(
-        Client, on_delete=models.CASCADE, related_name="messages", verbose_name="Client"
-    )
 
     def __str__(self):
-        return self.client.phone_number
+        return self.text
 
     class Meta:
         verbose_name = "Message"
