@@ -7,7 +7,11 @@ from src.mailing.models import Mailing, Message, Client
 class ClientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Client
-        fields = ("phone_number", "tag", "operator_code",)
+        fields = (
+            "phone_number",
+            "tag",
+            "operator_code",
+        )
 
 
 class MessageSerializer(serializers.ModelSerializer):

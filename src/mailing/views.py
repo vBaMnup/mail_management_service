@@ -1,7 +1,11 @@
 from rest_framework import viewsets
 
 from src.mailing.models import Mailing, Message, Client
-from src.mailing.serializers import MailingSerializer, MessageSerializer, ClientSerializer
+from src.mailing.serializers import (
+    MailingSerializer,
+    MessageSerializer,
+    ClientSerializer,
+)
 
 
 class MailingViewSet(viewsets.ModelViewSet):
