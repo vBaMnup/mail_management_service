@@ -1,7 +1,13 @@
-from rest_framework import serializers
 from django.utils import timezone
+from rest_framework import serializers
 
-from src.mailing.models import Mailing, Message
+from src.mailing.models import Mailing, Message, Client
+
+
+class ClientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Client
+        fields = ("phone_number", "tag", "operator_code",)
 
 
 class MessageSerializer(serializers.ModelSerializer):
