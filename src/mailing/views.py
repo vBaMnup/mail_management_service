@@ -6,6 +6,7 @@ from src.mailing.serializers import (
     MessageSerializer,
     ClientSerializer,
 )
+from src.mailing.tasks import send_mailing
 
 
 class MailingViewSet(viewsets.ModelViewSet):
@@ -16,6 +17,17 @@ class MailingViewSet(viewsets.ModelViewSet):
 class MessageViewSet(viewsets.ModelViewSet):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
+
+    def perform_create(self, serializer):
+        message = serializer.save()
+        mailing = message.mailing_id
+        if mailing.start_datetime <= message.datetime <= mailing.end_datetime:
+            send_mailing.apply_async(
+                kwargs={"message_id": message.message_id},
+                eta=message.datetime,
+            )
+        else:
+            pass
 
 
 class ClientViewSet(viewsets.ModelViewSet):

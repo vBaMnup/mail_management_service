@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  redis:
+    image: redis:6.2-alpine
+    container_name: mailer_redis
+    ports:
+      - "5432:5432"
+    volumes:
+      - mailer_redis:/var/lib/postgresql/data/
+
+volumes:
+  mailer_redis:
