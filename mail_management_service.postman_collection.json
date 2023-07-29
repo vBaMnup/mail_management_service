@@ -1,0 +1,326 @@
+{
+	"info": {
+		"_postman_id": "092b94e5-df5c-43dc-9550-281d8f0bbe86",
+		"name": "mail_management_service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26661593"
+	},
+	"item": [
+		{
+			"name": "create client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"phone_number\": \"79265942750\",\n  \"tag\": \"Бизнес\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/clients/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"clients",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create client 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"phone_number\": \"79055942750\",\n  \"tag\": \"Бизнес\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/clients/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"clients",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create client 3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"phone_number\": \"79265942755\",\n  \"tag\": \"Учеба\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/clients/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"clients",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create client 4",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"phone_number\": \"79055942755\",\n  \"tag\": \"Учеба\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/clients/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"clients",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all clients",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"phone_number\": \"79265942750\",\n  \"tag\": \"Бизнес\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/clients/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"clients",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create mailing filter operator code",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"start_datetime\": \"2023-07-29T21:25:51.115Z\",\n  \"end_datetime\": \"2023-08-29T21:25:51.115Z\",\n  \"operator_code_filter\": \"926\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/mailings/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"mailings",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create mailing filter tag",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"start_datetime\": \"2023-07-29T21:25:51.115Z\",\n  \"end_datetime\": \"2023-08-29T21:25:51.115Z\",\n  \"operator_code_filter\": \"926\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/mailings/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"mailings",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create mailing get all mailings",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/mailings/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"mailings",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create message for mailing 1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"datetime\": \"2023-07-29T21:55:25.135Z\",\n  \"text\": \"Удачной работы\",\n  \"mailing_id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/messages/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"messages",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create message for mailing 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"datetime\": \"2023-07-29T21:57:25.135Z\",\n  \"text\": \"Удачной учебы\",\n  \"mailing_id\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/messages/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"messages",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
