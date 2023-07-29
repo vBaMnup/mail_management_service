@@ -65,9 +65,13 @@ WSGI_APPLICATION = "config.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': environ.get('DB_ENGINE', default='django.db.backends.postgresql'),
+        'NAME': environ.get('DB_NAME', default='mailing'),
+        'USER': environ.get('POSTGRES_USER', default='mailing_user'),
+        'PASSWORD': environ.get('POSTGRES_PASSWORD', default='mailing_password'),
+        'HOST': environ.get('DB_HOST', default='127.0.0.1'),
+        'PORT': environ.get('DB_PORT', default='5432')
     }
 }
 

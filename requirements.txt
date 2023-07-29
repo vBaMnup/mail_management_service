@@ -3,3 +3,4 @@ Django==4.2.3
 black==22.10.0
 drf-yasg==1.21.7
 celery==5.3.1
+gunicorn==21.2.0
