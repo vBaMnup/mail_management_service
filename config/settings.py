@@ -1,6 +1,10 @@
 from pathlib import Path
 from os import environ
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -10,7 +14,7 @@ SECRET_KEY = environ.get(
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -66,11 +70,11 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": environ.get("DB_ENGINE", default="django.db.backends.postgresql"),
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": environ.get("DB_NAME", default="mailing"),
         "USER": environ.get("POSTGRES_USER", default="mailing_user"),
         "PASSWORD": environ.get("POSTGRES_PASSWORD", default="mailing_password"),
-        "HOST": environ.get("DB_HOST", default="127.0.0.1"),
+        "HOST": environ.get("DB_HOST", default="db"),
         "PORT": environ.get("DB_PORT", default="5432"),
     }
 }
@@ -118,8 +122,8 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Celery
-CELERY_BROKER_URL = environ.get("CELERY_BROKER_URL", "redis://127.0.0.1:6379")
-CELERY_RESULT_BACKEND = environ.get("CELERY_RESULT_BACKEND", "redis://127.0.0.1:6379")
+CELERY_BROKER_URL = environ.get("CELERY_BROKER_URL", "redis://redis:6379")
+CELERY_RESULT_BACKEND = environ.get("CELERY_RESULT_BACKEND", "redis://redis:6379")
 
 CELERY_BROCKER_TRANSPORT_OPTIONS = {"visibility_timeout": 3600}
 CELERY_ACCEPT_CONTENT = ["application/json"]
