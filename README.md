@@ -45,3 +45,61 @@
 действий со стороны пользователя системы.
 
 Сообщения рассылки можно выводить в консоль приложения.
+
+### Технологии
+- python 3.11
+- Django 4.2.3
+- Django Rest Framework 3.14.0
+- PostgreSQL 13.0
+- Celery
+- Redis
+- Black
+- Dotenv
+
+### Как запустить проект
+
+Клонировать репозиторий и перейти в него в командной строке:
+
+ ```bash
+ git clone git@github.com:vBaMnup/mail_management_service.git 
+ ```
+
+Добавить в файл .env:
+```bash
+cd config/
+touch .env
+```
+```dotenv
+SECRET_KEY="django-insecure-k25cy#!ywppx_beguz6u@*5#)$m)bk52!3x803u4($zw#sry8h"
+CELERY_BROKER_URL=redis://redis:6379
+CELERY_RESULT_BACKEND=redis://redis:6379
+DB_NAME=postgres
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+DB_HOST=db
+DB_PORT=5432
+```
+
+Выполнить файл docker-compose.yml:
+
+```bash
+docker-compose up -d --build
+```
+
+Ссылка на документацию:
+```url
+http://localhost:8000/docs/
+```
+
+Коллекция Postman для проверки API доступна в файле:
+```text
+mail_management_service.postman_collection.json
+```
+
+Посмотреть лог отправки сообщений в рассылке
+```bash
+docker-compose logs -f celery
+```
+
+### Автор
+[Paskov Andrey](https://t.me/vbamnup)
