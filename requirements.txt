@@ -1,5 +1,5 @@
 djangorestframework==3.14.0
-Django==4.2.3
+Django>=4.2.11
 black==22.10.0
 drf-yasg==1.21.7
 celery==5.3.1
